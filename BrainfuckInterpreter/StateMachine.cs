@@ -1,15 +1,18 @@
-﻿using System;
+﻿using BrainfuckInterpreter.Visualisers;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace BrainfuckInterpreter
 {
+    [DebuggerVisualizer(typeof(StateMachineVisualiser), typeof(StateMachineObjectSource), Description = "Memory Visualiser")]
     public class StateMachine
     {
         public int InstructionAddress { get; set; }
         public byte[] Memory { get; set; }
-        public int MemoryAddress{get;set;}
+        public int MemoryAddress { get; set; }
         public Stack<int> PreviousLoopStarts = new Stack<int>();
         private Dictionary<OpCode, Action> actions = new Dictionary<OpCode, Action>();
         private Runner _runner;
