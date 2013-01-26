@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B4849F4-2F27-449E-A7E5-619AC4AE22E8}</ProjectGuid>
+    <ProjectGuid>{8019AC4D-A7B9-49A1-AB66-7098004EDF8B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BrainfuckInterpreter</RootNamespace>
-    <AssemblyName>BrainfuckInterpreter</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>VisualiserDevelopmentHost</RootNamespace>
+    <AssemblyName>VisualiserDevelopmentHost</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -35,8 +35,6 @@
     <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,25 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExamplePrograms.cs" />
-    <Compile Include="OpCodes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Runner.cs" />
-    <Compile Include="StateMachine.cs" />
-    <Compile Include="Visualisers\StateMachineObjectSource.cs" />
-    <Compile Include="Visualisers\StateMachineVisualiser.cs" />
-    <Compile Include="Visualisers\StateMachineVisualiserForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Visualisers\StateMachineVisualiserForm.Designer.cs">
-      <DependentUpon>StateMachineVisualiserForm.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Visualisers\StateMachineVisualiserForm.resx">
-      <DependentUpon>StateMachineVisualiserForm.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BrainfuckInterpreter\BrainfuckInterpreter.csproj">
+      <Project>{3b4849f4-2f27-449e-a7e5-619ac4ae22e8}</Project>
+      <Name>BrainfuckInterpreter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
