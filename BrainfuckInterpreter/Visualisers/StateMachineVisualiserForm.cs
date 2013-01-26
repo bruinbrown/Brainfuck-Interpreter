@@ -26,11 +26,14 @@ namespace BrainfuckInterpreter.Visualisers
             using (var graphics = this.CreateGraphics())
             {
                 // Calculate the width of 4 spaces in the current font; use this to highlight the current pointer
-                var stringSize = TextRenderer.MeasureText("    ", this.Font);
-                var stringWidth = stringSize.Width - 8; //TODO: Find out why I have to mmunge the return value
+                var columnSize = TextRenderer.MeasureText("    ", this.Font);
+                var columnWidth = columnSize.Width - 8; //TODO: Find out why I have to munge the return value
 
-                var startX = stringWidth * (float)_stateMachineViewModel.CurrentPosition;
-                graphics.FillRectangle(Brushes.Red, startX, 0, stringWidth, stringSize.Height);
+                var labelSize = TextRenderer.MeasureText("Ascii: ", this.Font);
+                var labelWidth = labelSize.Width - 8; //TODO: Find out why I have to munge the return value
+
+                var startX = columnWidth * (float)_stateMachineViewModel.CurrentPosition + labelWidth;
+                graphics.FillRectangle(Brushes.Red, startX, 0, columnWidth, columnSize.Height);
 
                 var memoryInfo = string.Format("{1}{0}{2}{0}{3}"
                     , Environment.NewLine
@@ -46,8 +49,12 @@ namespace BrainfuckInterpreter.Visualisers
         {
             public StateMachineViewModel(int memoryLocation, string memory)
             {
+                SlotLabels = "Slot:  ";
+                SlotValues = "Value: ";
+                SlotAsciiValues = "Ascii: ";
+
                 CurrentPosition = memoryLocation;
-                
+
                 var lastNon0Slot = GetLastNonZeroMemoryIndex(memory);
                 var displayEnd = Math.Max(lastNon0Slot, memoryLocation);
 
@@ -64,7 +71,7 @@ namespace BrainfuckInterpreter.Visualisers
             private int GetLastNonZeroMemoryIndex(string memory)
             {
                 return Array.FindLastIndex(memory.ToArray(), b => b > 0);
-            }            
+            }
 
             public string SlotLabels { get; private set; }
             public string SlotValues { get; private set; }
