@@ -8,7 +8,6 @@ namespace BrainfuckInterpreter
     public class Runner
     {
         public string Program { get; set; }
-        private int CurrentStackAddress = 0;
         StateMachine sm;
         private bool programLoaded = false;
 
